@@ -46,17 +46,17 @@ The spine actively rotates so that either the **front** or the **rear** body sta
 
 **Front body kept horizontal:**
 
-<video src="https://github.com/fedecomi04/spinal-quadruped/raw/main/media/balance_front.mp4" controls width="640"></video>
+<video src="https://github.com/fedecomi04/opensource-spinal-quadruped/raw/main/media/balance_front.mp4" controls width="640"></video>
 
 **Rear body kept horizontal:**
 
-<video src="https://github.com/fedecomi04/spinal-quadruped/raw/main/media/balance_rear.mp4" controls width="640"></video>
+<video src="https://github.com/fedecomi04/opensource-spinal-quadruped/raw/main/media/balance_rear.mp4" controls width="640"></video>
 
 ### Trot gait — MuJoCo simulation
 
 The trot controller running in the MuJoCo physics simulation. Every algorithm is validated here before being deployed to the physical robot.
 
-<video src="https://github.com/fedecomi04/spinal-quadruped/raw/main/media/walk_simulation.mp4" controls width="640"></video>
+<video src="https://github.com/fedecomi04/opensource-spinal-quadruped/raw/main/media/walk_simulation.mp4" controls width="640"></video>
 
 ### Trot gait — real hardware (still)
 
