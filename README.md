@@ -1,6 +1,6 @@
 # ASTRA — Quasi-Direct-Drive Spinal Quadruped
 
-**Active Spine Technology for Robotic Agility** — an open-source 9.5 kg quadruped robot with a 3-DoF active spine, built as a B.Sc. thesis at TU München. Designed to be reproducible by hobbyists and labs in the **€1500 - 2000** range, with full mechanical CAD, embedded firmware, and ROS 2 control stack.
+**Active Spine Technology for Robotic Agility** — an open-source 9.5 kg quadruped robot with a 3-DoF active spine, built as a B.Sc. thesis at TU München. Designed to be reproducible by hobbyists and labs for around **€1 500**, with full mechanical CAD, embedded firmware, and ROS 2 control stack.
 
 <p align="center">
   <img src="docs/images/hero_quadruped.png" alt="ASTRA quadruped" width="700"/>
@@ -12,7 +12,7 @@
 
 The 2020s have seen quadrupeds like Unitree's **Go2** (~€2 800) and Boston Dynamics' **Spot** (~€75 000) move from labs into the consumer/industrial market. But almost every commercial platform has a **rigid torso**. Biology disagrees: cheetahs, dogs and horses use their spine to extend stride, store elastic energy and rotate the body in flight.
 
-ASTRA is a **research platform built specifically to study active spines**, with a parallel three-DoF spine that can be locked rigid (to baseline against rigid-torso behaviour) or driven actively. The full stack — CAD, firmware, ROS 2 nodes, MuJoCo sim — is released so anyone with a printer, a soldering iron and a €2k budget can rebuild it and run new control algorithms.
+ASTRA is a **research platform built specifically to study active spines**, with a parallel three-DoF spine that can be locked rigid (to baseline against rigid-torso behaviour) or driven actively. The full stack — CAD, firmware, ROS 2 nodes, MuJoCo sim — is released so anyone with a printer, a soldering iron and a ~€1.5k budget can rebuild it and run new control algorithms.
 
 <p align="center">
   <img src="docs/images/cheetah_spine_inspiration.png" alt="Cheetah spine flexion" width="450"/>
@@ -32,7 +32,7 @@ ASTRA is a **research platform built specifically to study active spines**, with
 | **Autonomy** | ~25 min | 30–120 min | 90 min | 90 min |
 | **Active-spine DoF** | **3** | 0 | 0 | 0 |
 | **Total DoF** | 15 (3 × 4 legs + 3 spine) | 12 | 12 | 12 |
-| **Estimated build cost** | **~€2.5 k** | — | — | — |
+| **Estimated build cost** | **~€1.5 k** | — | — | — |
 
 ¹ With the current hard-coded open-loop trot. The mechanical platform is designed for >1 m/s once a proper MPC / learned controller is added.
 
@@ -40,15 +40,31 @@ ASTRA is a **research platform built specifically to study active spines**, with
 
 ## Demos
 
-| Trot on flat ground (real hardware) | Balance on inclined plane |
-|---|---|
-| <img src="docs/images/trot_walking.jpg" width="380"/> | <img src="docs/images/balance_inclined.jpg" width="380"/> |
-| Hard-coded closed-loop quintic foot trajectory, diagonal pairs in phase. | Spine actively rotates to keep one body (front or rear) horizontal. |
+### Balance on an inclined plane — real hardware
 
-Full video clips of both tests live in [`media/`](media/):
-- `media/balance_front.mov` — front-body balance on an inclined plane
-- `media/balance_rear.mov` — rear-body balance on the same plane
-- `media/walk_simulation.mov` — MuJoCo trot
+The spine actively rotates so that either the **front** or the **rear** body stays horizontal on a slope — selected by a single flag in the controller.
+
+**Front body kept horizontal:**
+
+<video src="https://github.com/fedecomi04/spinal-quadruped/raw/main/media/balance_front.mp4" controls width="640"></video>
+
+**Rear body kept horizontal:**
+
+<video src="https://github.com/fedecomi04/spinal-quadruped/raw/main/media/balance_rear.mp4" controls width="640"></video>
+
+### Trot gait — MuJoCo simulation
+
+The trot controller running in the MuJoCo physics simulation. Every algorithm is validated here before being deployed to the physical robot.
+
+<video src="https://github.com/fedecomi04/spinal-quadruped/raw/main/media/walk_simulation.mp4" controls width="640"></video>
+
+### Trot gait — real hardware (still)
+
+<p align="center">
+  <img src="docs/images/trot_walking.jpg" width="500"/>
+</p>
+
+Hard-coded closed-loop quintic foot trajectory, diagonal pairs in phase, ~4 cm/s on the physical robot.
 
 ---
 
@@ -96,7 +112,7 @@ This split lets you swap the Pi for any other host with a USB port — the motor
 
 <p align="center">
   <img src="docs/images/cad_full_body.png" width="430"/>
-  <img src="docs/images/spine_3dof.png" width="280"/>
+  <img src="docs/images/spine_3dof.png" width="560"/>
   <br/>
   <em>Left: full body. Right: parallel 3-DoF spine mechanism (pitch, roll, yaw via 2 actuators + universal joint).</em>
 </p>
@@ -151,7 +167,13 @@ Two STM32CubeIDE projects (`front_stm32/`, `rear_stm32/`) for the **STM32H723VG*
 
 ### Simulation (MuJoCo)
 
-A MuJoCo XML model of the full robot lives at `ros2_ws/src/mujoco_interface/model/`. The `mujoco_interface` node runs the physics, exposes the same ROS 2 topics as the real hardware, and lets you bring up any new controller against the simulator first.
+The **full MuJoCo simulation is shipped in the repo** at [`ros2_ws/src/mujoco_interface/model/`](ros2_ws/src/mujoco_interface/model/):
+
+- `model.xml` — main MuJoCo model of the whole robot (bodies, joints, actuators, sensors, IMU).
+- `quadruped_UJ_activated.xml` — variant with the universal-joint spine activated, used for spine-control experiments.
+- `meshes/` — 24 STL meshes for every body half, leg link (FR/FL/RR/RL × hip/femur/tibia) and spine part, exported directly from the Fusion 360 CAD so the visual + collision geometry matches the real hardware.
+
+The `mujoco_interface` node runs the physics in-process, exposes the same ROS 2 topics as the real hardware (`actuator_goal_rad` for commands, `imu_data` for the simulated IMU), and lets you bring up any new controller against the simulator first.
 
 <p align="center">
   <img src="docs/images/mujoco_simulation.png" alt="MuJoCo simulation" width="430"/>
@@ -163,7 +185,7 @@ A MuJoCo XML model of the full robot lives at `ros2_ws/src/mujoco_interface/mode
 
 <p align="center">
   <img src="docs/images/joints_overview.png" width="430"/>
-  <img src="docs/images/naming_convention.png" width="240"/>
+  <img src="docs/images/naming_convention.png" width="480"/>
 </p>
 
 Legs are indexed **1 = FR, 2 = FL, 3 = RR, 4 = RL**, joints **1 = waist, 2 = hip, 3 = knee**. Spine joints are **1 = front actuator, 2 = rear-left actuator, 3 = rear-right actuator** (treated as "leg 5" in the codebase for uniformity).
@@ -184,7 +206,7 @@ A neutral [`cad/ASTRA_quadruped.step`](cad/ASTRA_quadruped.step) (~20 MB) is inc
 
 Rough order of operations to reproduce ASTRA:
 
-1. **Order the motors** — 9 × Damiao DM6006 + 6 × Damiao DM4010 (≈ €1 800).
+1. **Order the motors** — 9 × Damiao DM6006 + 6 × Damiao DM4010 (the bulk of the budget).
 2. **Cut the CFRP frame and leg parts** from the STEP file. A local laser-cutting service is fine.
 3. **3D-print the Tough PLA brackets** (see `99_3DPrint` in the thesis appendix for print settings — Bambu Lab P1S / Prusa MK4 both tested).
 4. **Wire the electronics**: 1 × Raspberry Pi 5, 2 × STM32H723VG dev boards, 2 × RoboMaster M3508 PDU, 1 × 6S LiPo (~5000 mAh), 1 × IMU.
