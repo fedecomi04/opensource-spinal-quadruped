@@ -230,9 +230,7 @@ spinal-quadruped/
 
 Supervised by **Mr. Lingchong Gao** (Chair of Materials Handling, Material Flow, Logistics — fml) and **Mr. Liangyu Dong** (Chair of Robotics, AI and Real-time Systems), under **Prof. Dr.-Ing. Johannes Fottner**, TU München School of Engineering and Design.
 
-Submitted September 2025. Inventarnr. fml: 2025/78.
-
-If you build one, drop me a line — I'd love to see it.
+Submitted September 2025.
 
 ---
 
