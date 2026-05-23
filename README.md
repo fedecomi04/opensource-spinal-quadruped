@@ -1,6 +1,6 @@
 # ASTRA — Quasi-Direct-Drive Spinal Quadruped
 
-**Active Spine Technology for Robotic Agility** — an open-source 9.5 kg quadruped robot with a 3-DoF active spine, built as a B.Sc. thesis at TU München. Designed to be reproducible by hobbyists and labs in the **€2 000 – €3 000** range, with full mechanical CAD, embedded firmware, and ROS 2 control stack.
+**Active Spine Technology for Robotic Agility** — an open-source 9.5 kg quadruped robot with a 3-DoF active spine, built as a B.Sc. thesis at TU München. Designed to be reproducible by hobbyists and labs in the **€1500 - 2000** range, with full mechanical CAD, embedded firmware, and ROS 2 control stack.
 
 <p align="center">
   <img src="docs/images/hero_quadruped.png" alt="ASTRA quadruped" width="700"/>
