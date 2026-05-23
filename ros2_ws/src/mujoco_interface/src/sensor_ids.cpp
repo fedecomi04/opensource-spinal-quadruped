@@ -1,0 +1,116 @@
+#include <mujoco/mujoco.h>
+#include "sensor_ids.hpp"
+
+int id_imu_gyro;
+int id_imu_quat;
+int id_imu_angvel;
+int id_imu_vel;
+int id_imu_site;
+
+int id_FR_hip_s_tau;
+int id_FR_hip_s_pos;
+int id_FR_hip_s_vel;
+int id_FR_femur_s_tau;
+int id_FR_femur_s_pos;
+int id_FR_femur_s_vel;
+int id_FR_tibia_s_tau;
+int id_FR_tibia_s_pos;
+int id_FR_tibia_s_vel;
+int id_FL_hip_s_tau;
+int id_FL_hip_s_pos;
+int id_FL_hip_s_vel;
+int id_FL_femur_s_tau;
+int id_FL_femur_s_pos;
+int id_FL_femur_s_vel;
+int id_FL_tibia_s_tau;
+int id_FL_tibia_s_pos;
+int id_FL_tibia_s_vel;
+int id_RR_hip_s_tau;
+int id_RR_hip_s_pos;
+int id_RR_hip_s_vel;
+int id_RR_femur_s_tau;
+int id_RR_femur_s_pos;
+int id_RR_femur_s_vel;
+int id_RR_tibia_s_tau;
+int id_RR_tibia_s_pos;
+int id_RR_tibia_s_vel;
+int id_RL_hip_s_tau;
+int id_RL_hip_s_pos;
+int id_RL_hip_s_vel;
+int id_RL_femur_s_tau;
+int id_RL_femur_s_pos;
+int id_RL_femur_s_vel;
+int id_RL_tibia_s_tau;
+int id_RL_tibia_s_pos;
+int id_RL_tibia_s_vel;
+int id_F_spine_s_tau;
+int id_F_spine_s_pos;
+int id_F_spine_s_vel;
+int id_RL_spine_s_tau;
+int id_RL_spine_s_pos;
+int id_RL_spine_s_vel;
+int id_RR_spine_s_tau;
+int id_RR_spine_s_pos;
+int id_RR_spine_s_vel;
+
+int id_UJ_spine_s_tau;
+int id_UJ_spine_s_pos;
+int id_UJ_spine_s_vel;
+
+void init_sensor_ids(const mjModel* m) {
+    id_imu_gyro = mj_name2id(m, mjOBJ_SENSOR, "imu_gyro");
+    id_imu_quat = mj_name2id(m, mjOBJ_SENSOR, "imu_quat");
+    id_imu_angvel = mj_name2id(m, mjOBJ_SENSOR, "imu_angvel");
+    id_imu_vel = mj_name2id(m, mjOBJ_SENSOR, "imu_vel");
+    id_imu_site = mj_name2id(m, mjOBJ_SITE, "imu_site");
+
+    id_FR_hip_s_tau = mj_name2id(m, mjOBJ_SENSOR, "FR_hip_s_tau");
+    id_FR_hip_s_pos = mj_name2id(m, mjOBJ_SENSOR, "FR_hip_s_pos");
+    id_FR_hip_s_vel = mj_name2id(m, mjOBJ_SENSOR, "FR_hip_s_vel");
+    id_FR_femur_s_tau = mj_name2id(m, mjOBJ_SENSOR, "FR_femur_s_tau");
+    id_FR_femur_s_pos = mj_name2id(m, mjOBJ_SENSOR, "FR_femur_s_pos");
+    id_FR_femur_s_vel = mj_name2id(m, mjOBJ_SENSOR, "FR_femur_s_vel");
+    id_FR_tibia_s_tau = mj_name2id(m, mjOBJ_SENSOR, "FR_tibia_s_tau");
+    id_FR_tibia_s_pos = mj_name2id(m, mjOBJ_SENSOR, "FR_tibia_s_pos");
+    id_FR_tibia_s_vel = mj_name2id(m, mjOBJ_SENSOR, "FR_tibia_s_vel");
+    id_FL_hip_s_tau = mj_name2id(m, mjOBJ_SENSOR, "FL_hip_s_tau");
+    id_FL_hip_s_pos = mj_name2id(m, mjOBJ_SENSOR, "FL_hip_s_pos");
+    id_FL_hip_s_vel = mj_name2id(m, mjOBJ_SENSOR, "FL_hip_s_vel");
+    id_FL_femur_s_tau = mj_name2id(m, mjOBJ_SENSOR, "FL_femur_s_tau");
+    id_FL_femur_s_pos = mj_name2id(m, mjOBJ_SENSOR, "FL_femur_s_pos");
+    id_FL_femur_s_vel = mj_name2id(m, mjOBJ_SENSOR, "FL_femur_s_vel");
+    id_FL_tibia_s_tau = mj_name2id(m, mjOBJ_SENSOR, "FL_tibia_s_tau");
+    id_FL_tibia_s_pos = mj_name2id(m, mjOBJ_SENSOR, "FL_tibia_s_pos");
+    id_FL_tibia_s_vel = mj_name2id(m, mjOBJ_SENSOR, "FL_tibia_s_vel");
+    id_RR_hip_s_tau = mj_name2id(m, mjOBJ_SENSOR, "RR_hip_s_tau");
+    id_RR_hip_s_pos = mj_name2id(m, mjOBJ_SENSOR, "RR_hip_s_pos");
+    id_RR_hip_s_vel = mj_name2id(m, mjOBJ_SENSOR, "RR_hip_s_vel");
+    id_RR_femur_s_tau = mj_name2id(m, mjOBJ_SENSOR, "RR_femur_s_tau");
+    id_RR_femur_s_pos = mj_name2id(m, mjOBJ_SENSOR, "RR_femur_s_pos");
+    id_RR_femur_s_vel = mj_name2id(m, mjOBJ_SENSOR, "RR_femur_s_vel");
+    id_RR_tibia_s_tau = mj_name2id(m, mjOBJ_SENSOR, "RR_tibia_s_tau");
+    id_RR_tibia_s_pos = mj_name2id(m, mjOBJ_SENSOR, "RR_tibia_s_pos");
+    id_RR_tibia_s_vel = mj_name2id(m, mjOBJ_SENSOR, "RR_tibia_s_vel");
+    id_RL_hip_s_tau = mj_name2id(m, mjOBJ_SENSOR, "RL_hip_s_tau");
+    id_RL_hip_s_pos = mj_name2id(m, mjOBJ_SENSOR, "RL_hip_s_pos");
+    id_RL_hip_s_vel = mj_name2id(m, mjOBJ_SENSOR, "RL_hip_s_vel");
+    id_RL_femur_s_tau = mj_name2id(m, mjOBJ_SENSOR, "RL_femur_s_tau");
+    id_RL_femur_s_pos = mj_name2id(m, mjOBJ_SENSOR, "RL_femur_s_pos");
+    id_RL_femur_s_vel = mj_name2id(m, mjOBJ_SENSOR, "RL_femur_s_vel");
+    id_RL_tibia_s_tau = mj_name2id(m, mjOBJ_SENSOR, "RL_tibia_s_tau");
+    id_RL_tibia_s_pos = mj_name2id(m, mjOBJ_SENSOR, "RL_tibia_s_pos");
+    id_RL_tibia_s_vel = mj_name2id(m, mjOBJ_SENSOR, "RL_tibia_s_vel");
+    id_F_spine_s_tau = mj_name2id(m, mjOBJ_SENSOR, "F_spine_s_tau");
+    id_F_spine_s_pos = mj_name2id(m, mjOBJ_SENSOR, "F_spine_s_pos");
+    id_F_spine_s_vel = mj_name2id(m, mjOBJ_SENSOR, "F_spine_s_vel");
+    id_RL_spine_s_tau = mj_name2id(m, mjOBJ_SENSOR, "RL_spine_s_tau");
+    id_RL_spine_s_pos = mj_name2id(m, mjOBJ_SENSOR, "RL_spine_s_pos");
+    id_RL_spine_s_vel = mj_name2id(m, mjOBJ_SENSOR, "RL_spine_s_vel");
+    id_RR_spine_s_tau = mj_name2id(m, mjOBJ_SENSOR, "RR_spine_s_tau");
+    id_RR_spine_s_pos = mj_name2id(m, mjOBJ_SENSOR, "RR_spine_s_pos");
+    id_RR_spine_s_vel = mj_name2id(m, mjOBJ_SENSOR, "RR_spine_s_vel");
+
+    id_UJ_spine_s_tau = mj_name2id(m, mjOBJ_SENSOR, "UJ_spine_s_tau");
+    id_UJ_spine_s_pos = mj_name2id(m, mjOBJ_SENSOR, "UJ_spine_s_pos");
+    id_UJ_spine_s_vel = mj_name2id(m, mjOBJ_SENSOR, "UJ_spine_s_vel");
+}
