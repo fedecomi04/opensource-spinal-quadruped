@@ -1,0 +1,235 @@
+<mujoco model="quadruped">
+    <compiler angle="radian" eulerseq="XYZ" />
+    <option gravity="0 0 0" timestep="0.001"/> 
+    <asset>
+        <mesh name="SPINE_BASE" file="meshes/SPINE_BASE.stl" scale="0.001 0.001 0.001" />
+        <mesh name="FR_tibia" file="meshes/FR_tibia.stl" scale="0.001 0.001 0.001" />
+        <mesh name="FR_femur" file="meshes/FR_femur.stl" scale="0.001 0.001 0.001" />
+        <mesh name="FR_hip" file="meshes/FR_hip.stl" scale="0.001 0.001 0.001" />
+        <mesh name="FL_tibia" file="meshes/FL_tibia.stl" scale="0.001 0.001 0.001" />
+        <mesh name="FL_femur" file="meshes/FL_femur.stl" scale="0.001 0.001 0.001" />
+        <mesh name="FL_hip" file="meshes/FL_hip.stl" scale="0.001 0.001 0.001" />
+        <mesh name="RR_tibia" file="meshes/RR_tibia.stl" scale="0.001 0.001 0.001" />
+        <mesh name="RR_femur" file="meshes/RR_femur.stl" scale="0.001 0.001 0.001" />
+        <mesh name="RR_hip" file="meshes/RR_hip.stl" scale="0.001 0.001 0.001" />
+        <mesh name="RL_tibia" file="meshes/RL_tibia.stl" scale="0.001 0.001 0.001" />
+        <mesh name="RL_femur" file="meshes/RL_femur.stl" scale="0.001 0.001 0.001" />
+        <mesh name="RL_hip" file="meshes/RL_hip.stl" scale="0.001 0.001 0.001" />
+        <mesh name="frontbase" file="meshes/frontbase.stl" scale="0.001 0.001 0.001" />
+        <mesh name="backbase" file="meshes/backbase.stl" scale="0.001 0.001 0.001" />
+        <mesh name="spine_RR_link" file="meshes/spine_RR_link.stl" scale="0.001 0.001 0.001" />
+        <mesh name="spine_R_bar" file="meshes/spine_R_bar.stl" scale="0.001 0.001 0.001" />
+        <mesh name="spine_RL_link" file="meshes/spine_RL_link.stl" scale="0.001 0.001 0.001" />
+        <mesh name="spine_L_bar" file="meshes/spine_L_bar.stl" scale="0.001 0.001 0.001" />
+        <mesh name="spine_FR_link" file="meshes/spine_FR_link.stl" scale="0.001 0.001 0.001" />
+        <mesh name="spine_FL_link" file="meshes/spine_FL_link.stl" scale="0.001 0.001 0.001" />
+    </asset>
+      <worldbody>
+        <light directional="true" pos="-0.5 0.5 3" dir="0 0 -1" />
+        <body name="ground" pos="0 0 0">
+            <geom type="plane" size="1 5 0.1" rgba="0.2 0.2 0.2 1" contype="1" conaffinity="1"/>
+        </body>
+        <body name="frontbase" pos="0.0 0.0 0.05" euler="0.0 0.0 0.0">
+        <site name="imu_site" pos="0 0.12 0.35" size="0.005" rgba="1 0 0 1" />
+            <joint name="root" type="free" />
+            <geom name="frontbase_geom" type="mesh" mesh="frontbase" pos="0 0 0" euler="0 0 0" />
+            <inertial mass="2.7047567302273086" pos="0.00033440222387868623 0.1245660632194667 0.2884083159461461" fullinertia="0.01078220929242324 0.013457553343312278 0.013262848443079664 1.1086881562630236e-05 2.426939650604682e-05 -0.0005029335341283497" />
+            <body name="SPINE_BASE" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                <joint name="F_j_spine" type="hinge" axis="0.0 -1.0 0.0" pos="0.0 0.048 0.2765" damping="0.0"/>
+                <geom name="SPINE_BASE_geom" type="mesh" mesh="SPINE_BASE" pos="0 0 0" euler="0 0 0" />
+                <inertial mass="0.31335795014290313" pos="3.392857252372269e-05 0.02698902626004699 0.30937648052390193" fullinertia="0.0004972224121499481 0.00096065696826848 0.0005518668776431874 -1.7053173613796147e-07 5.967022642829059e-08 1.8881962424268858e-05" />
+                <body name="backbase" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                    <joint name="j_universal" type="ball" pos="0.0 0.0 0.2765" damping="0.0"/>
+                    <geom name="backbase_geom" type="mesh" mesh="backbase" pos="0 0 0" euler="0 0 0" />
+                    <inertial mass="2.3349797051174357" pos="0.00013038137961569882 -0.10877171233725845 0.289194925915773" fullinertia="0.009087224494453011 0.011894123164930326 0.012186912807923042 2.1845326624663316e-06 4.249097312183789e-06 -6.126653941354587e-06" />
+                    <body name="spine_L_bar" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                        <joint name="RL_j_spine" type="hinge" axis="-1.0 0.0 0.0" pos="-0.061 -0.0805 0.2765" damping="0.0"/>
+                        <geom name="spine_L_bar_geom" type="mesh" mesh="spine_L_bar" pos="0 0 0" euler="0 0 0" />
+                        <inertial mass="0.03164580194616816" pos="-0.06755810312118324 -0.08039586581758262 0.33670530069433136" fullinertia="3.095324773523707e-05 3.1815550520951016e-05 2.89296070835705e-06 -2.062111216410479e-08 -3.7219913899651713e-06 -6.522642423108325e-08" />
+                        <body name="spine_RL_link" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                            <joint name="RL_j_link" type="ball" pos="-0.0615 -0.0805 0.3565" damping="0.0"/>
+                            <geom name="spine_RL_link_geom" type="mesh" mesh="spine_RL_link" pos="0 0 0" euler="0 0 0" />
+                            <inertial mass="0.02899974002495084" pos="-0.06149999999987106 -0.06295174717543707 0.35649999999854837" fullinertia="8.563419834303233e-06 6.156065880365616e-07 8.243247599980783e-06 1.1424780392566003e-17 6.353424730765056e-17 -9.497611030973019e-17" />
+                        </body>
+                    </body>
+                    <body name="spine_R_bar" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                        <joint name="RR_j_spine" type="hinge" axis="1.0 0.0 0.0" pos="0.061 -0.0805 0.2765" damping="0.0"/>
+                        <geom name="spine_R_bar_geom" type="mesh" mesh="spine_R_bar" pos="0 0 0" euler="0 0 0" />
+                        <inertial mass="0.031645801946168124" pos="0.06759945826011354 -0.08050000000314 0.3367056283650498" fullinertia="3.095234208204314e-05 3.181968096638418e-05 2.8953645025755212e-06 -1.279900664619138e-16 3.6961510613363726e-06 1.543253372315867e-15" />
+                        <body name="spine_RR_link" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                            <joint name="RR_j_link" type="ball" pos="0.0615 -0.0805 0.3565" damping="0.0"/>
+                            <geom name="spine_RR_link_geom" type="mesh" mesh="spine_RR_link" pos="0 0 0" euler="0 0 0" />
+                            <inertial mass="0.028999740024949126" pos="0.061499999999797876 -0.06295174717325776 0.3565000000126479" fullinertia="8.563419834318412e-06 6.156065880513067e-07 8.243247599981678e-06 3.5778671692021646e-17 6.10405823109339e-17 1.7141236346995825e-16" />
+                        </body>
+                    </body>
+                    <body name="RR_hip" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                        <joint name="RR_j_hip" type="hinge" axis="0.0 -1.0 0.0" pos="0.07 -0.176 0.266" damping="0.0" />
+                        <geom name="RR_hip_geom" type="mesh" mesh="RR_hip" pos="0 0 0" euler="0 0 0" />
+                        <inertial mass="0.42765614096569765" pos="0.04127800942400755 -0.2273092587519674 0.26606812124931534" fullinertia="0.0003819813177835876 0.00022425957082698733 0.0003062069227042566 -2.5639633945336374e-05 5.604986032681919e-07 2.0864847461235514e-07" />
+                        <body name="RR_femur" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                            <joint name="RR_j_femur" type="hinge" axis="1.0 0.0 0.0" pos="0.056 -0.234 0.266" damping="0.0"/>
+                            <geom name="RR_femur_geom" type="mesh" mesh="RR_femur" pos="0 0 0" euler="0 0 0" />
+                            <inertial mass="0.5478239660925199" pos="0.10262713634913981 -0.23333676163791178 0.2564743290521438" fullinertia="0.0009210868412945078 0.0009515235171001224 0.0003898366261748873 1.0369006426390326e-05 0.00012862808425460025 -3.44730242726049e-06" />
+                            <body name="RR_tibia" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                                <joint name="RR_j_tibia" type="hinge" axis="1.0 0.0 0.0" pos="0.113 -0.234 0.126" damping="0.0"/>
+                                <geom name="RR_tibia_geom" type="mesh" mesh="RR_tibia" pos="0 0 0" euler="0 0 0" />
+                                <inertial mass="0.06643041309117047" pos="0.1300000003100186 -0.23399974067058146 0.07451621272270392" fullinertia="0.0001728263651286045 0.00016950454321351953 7.324185496569019e-06 1.44164288016016e-09 8.782037597132586e-17 1.432228884318612e-09" />
+                            </body>
+                        </body>
+                    </body>
+                    <body name="RL_hip" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                        <joint name="RL_j_hip" type="hinge" axis="0.0 -1.0 0.0" pos="-0.07 -0.176 0.266" damping="0.0" />
+                        <geom name="RL_hip_geom" type="mesh" mesh="RL_hip" pos="0 0 0" euler="0 0 0" />
+                        <inertial mass="0.42765614096569793" pos="-0.041278008804007546 -0.22730925875196725 0.26593187827114756" fullinertia="0.00038198131778947875 0.0002242595708328715 0.00030620692270427394 2.563963394533117e-05 5.60496829816147e-07 -2.0865824064408844e-07" />
+                        <body name="RL_femur" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                            <joint name="RL_j_femur" type="hinge" axis="-1.0 -0.0 -0.0" pos="-0.056 -0.234 0.266" damping="0.0"/>
+                            <geom name="RL_femur_geom" type="mesh" mesh="RL_femur" pos="0 0 0" euler="0 0 0" />
+                            <inertial mass="0.5478239660925199" pos="-0.10262713572913987 -0.23333676163791509 0.25636797041582277" fullinertia="0.0009199706233370408 0.0009504072991454657 0.00038983662617207704 -1.0369006426445837e-05 -0.00012716627840188635 -3.5134260216729274e-06" />
+                            <body name="RL_tibia" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                                <joint name="RL_j_tibia" type="hinge" axis="-1.0 0.0 0.0" pos="-0.113 -0.234 0.126" damping="0.0"/>
+                                <geom name="RL_tibia_geom" type="mesh" mesh="RL_tibia" pos="0 0 0" euler="0 0 0" />
+                                <inertial mass="0.06643041309117051" pos="-0.1299999996900186 -0.23400025932378982 0.07451621072657212" fullinertia="0.0001728263651286444 0.0001695045432135191 7.32418549660805e-06 1.4416428792927982e-09 -8.738669510233166e-17 -1.4322288387821208e-09" />
+                            </body>
+                        </body>
+                    </body>
+                </body>
+                <body name="spine_FR_link" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                    <joint name="FR_j_link" type="ball" pos="0.0615 -0.0005 0.3565" damping="0.0"/>
+                    <joint name="FR_j_link_slide" type="slide" axis="0 1 0" pos="0.0615 -0.0045 0.3565" damping="1e3" stiffness="1e7" springref="0"/>
+                    <geom name="spine_FR_link_geom" type="mesh" mesh="spine_FR_link" pos="0 0 0" euler="0 0 0" />
+                    <inertial mass="0.022341134395664226" pos="0.06150000000021454 -0.011356679906857457 0.3565000000116856" fullinertia="3.6921940064428733e-06 5.856428636689774e-07 3.372021770187196e-06 3.628011519679619e-17 3.74049749507499e-17 3.7052609244692114e-17" />
+                </body>
+                <body name="spine_FL_link" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                    <joint name="FL_j_link" type="ball" pos="-0.0615 -0.0005 0.3565" damping="0.0"/>
+                    <joint name="FL_j_link_slide" type="slide" axis="0 1 0" pos="-0.0615 -0.0045 0.3565" damping="1e3" stiffness="1e7" springref="0"/>
+                    <geom name="spine_FL_link_geom" type="mesh" mesh="spine_FL_link" pos="0 0 0" euler="0 0 0" />
+                    <inertial mass="0.02234113439566692" pos="-0.061500000000215736 -0.011356679909035676 0.35649999999899146" fullinertia="3.6921940064372355e-06 5.856428636624722e-07 3.3720217701870605e-06 -3.625978640606209e-17 3.8055496254241206e-17 -9.053088140253962e-18" />
+                </body>
+            </body>
+            <body name="FL_hip" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                <joint name="FL_j_hip" type="hinge" axis="0.0 1.0 0.0" pos="-0.07 0.18775 0.2665" damping="0.0"/>
+                <geom name="FL_hip_geom" type="mesh" mesh="FL_hip" pos="0 0 0" euler="0 0 0" />
+                <inertial mass="0.4276561259852311" pos="-0.04127800980681607 0.2390592581385746 0.26656812124525314" fullinertia="0.0003819813000275618 0.00022425955607973877 0.00030620690583911536 -2.5639628777544832e-05 -5.605021222137435e-07 -2.0865082585308503e-07" />
+                <body name="FL_femur" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                    <joint name="FL_j_femur" type="hinge" axis="-1.0 0.0 0.0" pos="-0.056 0.24575 0.2665" damping="0.0"/>
+                    <geom name="FL_femur_geom" type="mesh" mesh="FL_femur" pos="0 0 0" euler="0 0 0" />
+                    <inertial mass="0.54782396609252" pos="-0.10262713603913984 0.2450867616397348 0.25697432863221853" fullinertia="0.0009210868407927564 0.0009515235170791322 0.0003898366256941052 1.0369006323856025e-05 -0.00012862808425901165 3.4473026945397445e-06" />
+                    <body name="FL_tibia" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                        <joint name="FL_j_tibia" type="hinge" axis="-1.0 0.0 0.0" pos="-0.113 0.24575 0.1265" damping="0.0"/>
+                        <geom name="FL_tibia_geom" type="mesh" mesh="FL_tibia" pos="0 0 0" euler="0 0 0" />
+                        <inertial mass="0.06643041309117047" pos="-0.1300000000000186 0.24574974067057934 0.0750162123027041" fullinertia="0.00017282636512864612 0.00016950454321351975 7.324185496609785e-06 1.4416428805938408e-09 -8.738669510233166e-17 -1.4322288392158017e-09" />
+                    </body>
+                </body>
+            </body>
+            <body name="FR_hip" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                <joint name="FR_j_hip" type="hinge" axis="0.0 1.0 0.0" pos="0.07 0.18775 0.2665" damping="0.0" />
+                <geom name="FR_hip_geom" type="mesh" mesh="FR_hip" pos="0 0 0" euler="0 0 0" />
+                <inertial mass="0.4276561259852311" pos="0.04127800980681604 0.2390592581385745 0.26643187943539876" fullinertia="0.00038198130003343905 0.00022425955608560214 0.00030620690583912924 2.5639628777546566e-05 -5.605003454266927e-07 2.0866111600723047e-07" />
+                <body name="FR_femur" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                    <joint name="FR_j_femur" type="hinge" axis="1.0 0.0 0.0" pos="0.056 0.24575 0.2665" damping="0.0"/>
+                    <geom name="FR_femur_geom" type="mesh" mesh="FR_femur" pos="0 0 0" euler="0 0 0" />
+                    <inertial mass="0.5478239660925192" pos="0.10262713603913984 0.2450867616397381 0.2568679719959032" fullinertia="0.0009199706228392168 0.0009504072991228102 0.0003898366256969016 -1.0369006323908067e-05 0.00012716627840619887 3.513426288875854e-06" />
+                    <body name="FR_tibia" pos="0.0 0.0 0.0" euler="0.0 -0.0 0.0">
+                        <joint name="FR_j_tibia" type="hinge" axis="1.0 0.0 0.0" pos="0.113 0.24575 0.1265" damping="0.0"/>
+                        <geom name="FR_tibia_geom" type="mesh" mesh="FR_tibia" pos="0 0 0" euler="0 0 0" />
+                        <inertial mass="0.06643041309117052" pos="0.13000000000001857 0.24575025932378775 0.07501621230657225" fullinertia="0.0001728263651286045 0.00016950454321351953 7.324185496567284e-06 1.441642879726479e-09 8.792879618857441e-17 1.4322288841017716e-09" />
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+
+    <equality>
+    <weld name="spine_L_link" body1="spine_FL_link" body2="spine_RL_link"/>
+    <weld name="spine_R_link" body1="spine_FR_link" body2="spine_RR_link"/>
+</equality>
+
+
+    <actuator>
+        <!-- Front Right leg -->
+        <motor name="FR_hip_act" joint="FR_j_hip" gear="1" ctrllimited="true" ctrlrange="-20 20"/>
+        <motor name="FR_femur_act" joint="FR_j_femur" gear="1" ctrllimited="true" ctrlrange="-12 12"/>
+        <motor name="FR_tibia_act" joint="FR_j_tibia" gear="1" ctrllimited="true" ctrlrange="-12 12"/>
+
+        <!-- Front Left leg -->
+        <motor name="FL_hip_act" joint="FL_j_hip" gear="1" ctrllimited="true" ctrlrange="-20 20"/>
+        <motor name="FL_femur_act" joint="FL_j_femur" gear="1" ctrllimited="true" ctrlrange="-12 12"/>
+        <motor name="FL_tibia_act" joint="FL_j_tibia" gear="1" ctrllimited="true" ctrlrange="-12 12"/>
+
+        <!-- Rear Right leg -->
+        <motor name="RR_hip_act" joint="RR_j_hip" gear="1" ctrllimited="true" ctrlrange="-20 20"/>
+        <motor name="RR_femur_act" joint="RR_j_femur" gear="1" ctrllimited="true" ctrlrange="-12 12"/>
+        <motor name="RR_tibia_act" joint="RR_j_tibia" gear="1" ctrllimited="true" ctrlrange="-12 12"/>
+
+        <!-- Rear Left leg -->
+        <motor name="RL_hip_act" joint="RL_j_hip" gear="1" ctrllimited="true" ctrlrange="-20 20"/>
+        <motor name="RL_femur_act" joint="RL_j_femur" gear="1" ctrllimited="true" ctrlrange="-12 12"/>
+        <motor name="RL_tibia_act" joint="RL_j_tibia" gear="1" ctrllimited="true" ctrlrange="-12 12"/>
+
+        <!-- Spine actuators -->
+        <motor name="F_spine_act" joint="F_j_spine" gear="1" ctrllimited="true" ctrlrange="-20 20"/>
+        <motor name="RR_spine_act" joint="RR_j_spine" gear="1" ctrllimited="true" ctrlrange="-20 20"/>
+        <motor name="RL_spine_act" joint="RL_j_spine" gear="1" ctrllimited="true" ctrlrange="-20 20"/>
+    </actuator>
+
+    <sensor>
+        <accelerometer site="imu_site" />
+
+        <!-- Front Right leg -->
+        <actuatorfrc name="FR_hip_s_tau" actuator="FR_hip_act"/>
+        <actuatorpos name="FR_hip_s_pos" actuator="FR_hip_act"/>
+        <actuatorvel name="FR_hip_s_vel" actuator="FR_hip_act"/>
+        <actuatorfrc name="FR_femur_s_tau" actuator="FR_femur_act"/>
+        <actuatorpos name="FR_femur_s_pos" actuator="FR_femur_act"/>
+        <actuatorvel name="FR_femur_s_vel" actuator="FR_femur_act"/>
+        <actuatorfrc name="FR_tibia_s_tau" actuator="FR_tibia_act"/>
+        <actuatorpos name="FR_tibia_s_pos" actuator="FR_tibia_act"/>
+        <actuatorvel name="FR_tibia_s_vel" actuator="FR_tibia_act"/>
+
+        <!-- Front Left leg -->
+        <actuatorfrc name="FL_hip_s_tau" actuator="FL_hip_act"/>
+        <actuatorpos name="FL_hip_s_pos" actuator="FL_hip_act"/>
+        <actuatorvel name="FL_hip_s_vel" actuator="FL_hip_act"/>
+        <actuatorfrc name="FL_femur_s_tau" actuator="FL_femur_act"/>
+        <actuatorpos name="FL_femur_s_pos" actuator="FL_femur_act"/>
+        <actuatorvel name="FL_femur_s_vel" actuator="FL_femur_act"/>
+        <actuatorfrc name="FL_tibia_s_tau" actuator="FL_tibia_act"/>
+        <actuatorpos name="FL_tibia_s_pos" actuator="FL_tibia_act"/>
+        <actuatorvel name="FL_tibia_s_vel" actuator="FL_tibia_act"/>
+
+        <!-- Rear Right leg -->
+        <actuatorfrc name="RR_hip_s_tau" actuator="RR_hip_act"/>
+        <actuatorpos name="RR_hip_s_pos" actuator="RR_hip_act"/>
+        <actuatorvel name="RR_hip_s_vel" actuator="RR_hip_act"/>
+        <actuatorfrc name="RR_femur_s_tau" actuator="RR_femur_act"/>
+        <actuatorpos name="RR_femur_s_pos" actuator="RR_femur_act"/>
+        <actuatorvel name="RR_femur_s_vel" actuator="RR_femur_act"/>
+        <actuatorfrc name="RR_tibia_s_tau" actuator="RR_tibia_act"/>
+        <actuatorpos name="RR_tibia_s_pos" actuator="RR_tibia_act"/>
+        <actuatorvel name="RR_tibia_s_vel" actuator="RR_tibia_act"/>
+
+        <!-- Rear Left leg -->
+        <actuatorfrc name="RL_hip_s_tau" actuator="RL_hip_act"/>
+        <actuatorpos name="RL_hip_s_pos" actuator="RL_hip_act"/>
+        <actuatorvel name="RL_hip_s_vel" actuator="RL_hip_act"/>
+        <actuatorfrc name="RL_femur_s_tau" actuator="RL_femur_act"/>
+        <actuatorpos name="RL_femur_s_pos" actuator="RL_femur_act"/>
+        <actuatorvel name="RL_femur_s_vel" actuator="RL_femur_act"/>
+        <actuatorfrc name="RL_tibia_s_tau" actuator="RL_tibia_act"/>
+        <actuatorpos name="RL_tibia_s_pos" actuator="RL_tibia_act"/>
+        <actuatorvel name="RL_tibia_s_vel" actuator="RL_tibia_act"/>
+
+        <!-- Spine -->
+        <actuatorfrc name="F_spine_s_tau" actuator="F_spine_act"/>
+        <actuatorpos name="F_spine_s_pos" actuator="F_spine_act"/>
+        <actuatorvel name="F_spine_s_vel" actuator="F_spine_act"/>
+        <actuatorfrc name="RL_spine_s_tau" actuator="RL_spine_act"/>
+        <actuatorpos name="RL_spine_s_pos" actuator="RL_spine_act"/>
+        <actuatorvel name="RL_spine_s_vel" actuator="RL_spine_act"/>
+        <actuatorfrc name="RR_spine_s_tau" actuator="RR_spine_act"/>
+        <actuatorpos name="RR_spine_s_pos" actuator="RR_spine_act"/>
+        <actuatorvel name="RR_spine_s_vel" actuator="RR_spine_act"/>
+
+    </sensor>
+
+</mujoco>

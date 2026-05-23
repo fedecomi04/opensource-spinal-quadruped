@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+._*
+
+# ROS 2 build artifacts
+build/
+install/
+log/
+
+# STM32CubeIDE build artifacts
+Debug/
+Release/
+.settings/
+.metadata/
+*.o
+*.d
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+*.su
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# CAD temp
+*.bak
+*.f3d.lock
